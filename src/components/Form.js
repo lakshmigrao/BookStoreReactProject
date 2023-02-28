@@ -8,6 +8,9 @@ function Form(){
     ;
     let [bookDetails, setBookDetails] = useState([]);
     let bookDetailsArr ;
+
+    
+
     function handleChange(e){
         setInput(e.target.value)
     }
@@ -16,11 +19,11 @@ function Form(){
         getBooks(input)
 
     }
-    async function getBooks(title) {
+    async function getBooks(searchWord) {
         // console.log(title);
     
         const yourAPIKey = "AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//process.env.REACT_APP_KEY;
-        let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
+        let url = `https://www.googleapis.com/books/v1/volumes?q=${searchWord}&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
     
         // await (await fetch(url)).json()
     
@@ -62,7 +65,8 @@ function Form(){
         <div>
             <form onSubmit={handleSubmit}>
                 <h1>Search for a book</h1>
-                <input value={input} onChange={handleChange}/>
+                <input value={input} onChange={handleChange} />
+                
                 <button>Search</button>      
             </form>
             
@@ -77,7 +81,7 @@ function Form(){
               {/* <img src={"../img/stackofbooks1.jpg"} alt="Stack of books"/> */}
                 <form onSubmit={handleSubmit}>
                     <h1>Search for a book</h1>
-                    <input value={input} onChange={handleChange}/>
+                    <input value={input} onChange={handleChange} placeholder="Search for books, authors, publishers" style={{width :"250px", fontFamily:"cursive"}}/>
                     <button>Search</button>
                     {/* {bookDetailsArr.map((item,index) => 
                 <h1 key = {index}> Title={item} Author={book.items[index].volumeInfo.title}</h1> 

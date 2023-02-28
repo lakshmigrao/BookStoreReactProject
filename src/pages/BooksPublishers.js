@@ -25,7 +25,7 @@ function BookPublishers(){
         // console.log(title);
     
         const yourAPIKey = "AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//process.env.REACT_APP_KEY;
-        let url = `https://www.googleapis.com/books/v1/volumes?filter=free-ebooks&maxResults=30&key=${yourAPIKey}`
+        let url = `https://www.googleapis.com/books/v1/volumes?q=Romance&maxResults=30&key=${yourAPIKey}`
         //`https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?maxResults=30&key=${yourAPIKey}`
         //`https://www.googleapis.com/books/v1/volumes?maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
         

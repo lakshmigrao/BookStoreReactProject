@@ -28,7 +28,7 @@ return(
         <Routes>
         <Route path="/" element={<Form />} />
         <Route path="/booksbypublishers" element={< BookPublishers/>}/>
-        <Route path="/bookdetails/:title/:id" element={< BookDetailsPage/>}/>
+        <Route path="/bookdetails/:title/:isbn" element={< BookDetailsPage/>}/>
         <Route path="/searchpage" element={<BookDisplay />} />
         </Routes>
         {/* (book?{book.items[0].volumeInfo.title}:null) */}

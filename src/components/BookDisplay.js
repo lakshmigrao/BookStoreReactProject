@@ -14,15 +14,16 @@ function BookDisplay({ books }) {
             return( 
             <div key={index} className="bookSingle">
               {/* <BookContext.Provider value={item}> */}
-              
-              <Link to={`/bookdetails/${temptitle}/${item.id}`}>
-              <h3>Title : {item.volumeInfo.title}, </h3></Link>
-           {/* </BookContext.Provider> */}
+              {item.volumeInfo.industryIdentifiers!==undefined?
+              <Link to={`/bookdetails/${temptitle}/${item.volumeInfo.industryIdentifiers[0].identifier}`}>
+              <h3>Title : {item.volumeInfo.title} </h3>
+              </Link>:null}
+
               <h4>{item.volumeInfo.subtitle}</h4>
               {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
               {item.searchInfo!==undefined?<p>{item.searchInfo.textSnippet}</p>:null}
               {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
-              {item.id!==undefined?<h1>{item.id}</h1>:null}
+              {/* {item.id!==undefined?<h1>{item.id}</h1>:null} */}
               {/* <Link>{item.volumeInfo.imageLinks[0].thumbnail}</Link>          */}
            </div>
            )}

@@ -43,6 +43,12 @@ button:hover{
   color: white;
   text-decoration: none;
 }
+form{
+  margin: 0 auto;
+  font-family: cursive;
+  border: 0px solid black;
+  width : 500px;
+}
 .App {
   
   text-align: center;

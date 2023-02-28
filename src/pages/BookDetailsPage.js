@@ -5,15 +5,15 @@ import { useContext } from "react"
 import { BookContext } from "../App"
 function BookDetailsPage(){
 
-    const {title,id} = useParams()
+    const {title,isbn} = useParams()
     // const bookitem= useContext(BookContext)
-    console.log("Useparams are ", title )
+    console.log("Useparams are ", title, isbn )
     let navigate = useNavigate()
     
     let [bookDetails, setBookDetails] = useState()
 
     const yourAPIKey = "AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//process.env.REACT_APP_KEY;
-    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+${id}&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
+    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+${isbn}&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
     const getBookDetails = async() => { //async function getCoin() {}, function hoisting
         try{
             const response = await fetch(url)
@@ -74,9 +74,9 @@ function BookDetailsPage(){
         if(bookDetails.items){
             console.log("bookDetails.items")
             console.log(bookDetails.items)
-            console.log(id)
+            console.log(isbn)
             for(let i=0;i<bookDetails.items.length;i++){
-                if(id===bookDetails.items[i].id){
+                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier){
                     index=i;
                     break;
                 }
