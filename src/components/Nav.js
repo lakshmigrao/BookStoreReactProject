@@ -5,11 +5,36 @@ function Nav(props){
         <>
      <div className="nav">
             <Link to="/">
-                <div>Home</div>
+                <div className="tab">Home</div>
             </Link>
-            <Link to="/booksbypublishers">
-                <div>Books By Categories</div>
+            <Link to="/mybooks">
+                <div className="tab">My Books</div>
             </Link>
+            <Link to="/booksbyfiction">
+                <div className="tab">Fiction</div>
+            </Link>
+            <Link to="/booksbyfictionkids">
+                <div className="tab">Fiction-Kids</div>
+            </Link>
+            <Link to="/booksbynonfiction">
+                <div className="tab">Non-Fiction</div>
+            </Link>
+            <Link to="/booksbyscience">
+                <div className="tab">Science</div>
+            </Link>
+            <Link to="/booksbycomputers">
+                <div className="tab">Computers</div>
+            </Link>
+            <Link to="/booksbypolitics">
+                <div className="tab">History&Politics</div>
+            </Link>
+            <Link to="/booksbygeography">
+                <div className="tab">Geography</div>
+            </Link>
+            <Link to="/booksbyromance">
+                <div className="tab">Romance</div>
+            </Link>
+            
       </div>
       <marquee style={{backgroundColor:"black", color : "white", fontFamily : "cursive"}} id="scroll" scrolldelay="60" >
         <h2>{ReadingQuotes[Math.floor(Math.random()*ReadingQuotes.length)]}</h2> 

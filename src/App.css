@@ -1,6 +1,19 @@
+body{
+  background-color:#3CCDC6;
+  animation-name: example;
+  animation-duration : 10s;
+  animation-iteration-count: infinite;
+  /* #2E86AB ; */
+}
+@keyframes example {
+  0%{background-color:#3CCDC6 ;}
+  50%{background-color: white;}
+  100%{background-color: #3CCDC6;}
+  
+}
 .nav {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: black;
   color: white;
   padding: 15px;
@@ -15,8 +28,9 @@ height : 350px;
 
 }
 button{
-  width : 100px;
-  border-radius: 10%;
+  width : 80px;
+  border-radius: 15%;
+  margin:10px;
 }
 button:hover{
   background-color : darkgray;
@@ -32,16 +46,25 @@ button:hover{
 .containerleft{
   font-family: cursive;
   border: 0px solid black;
-  width : 500px;
-  justify-content: flex-end;
+  width : 600px;
+  margin-left: 300px;
 }
 .containerright{
- justify-content: flex-start;
- width : 500px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+  width : 500px;
+  align-items: center;
 }
 .nav a {
   color: white;
   text-decoration: none;
+}
+.nav div{
+  margin:20px;
+}
+.tab:hover{
+  text-decoration: underline;
 }
 form{
   margin: 0 auto;
@@ -54,6 +77,7 @@ form{
   text-align: center;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 .App-logo {
@@ -66,12 +90,40 @@ form{
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.bookList:clicked{
+  value :"Added to my books"
+}
 .bookSingle{
-  border: 0px solid black;
-  width : 400px;
+  border: 2px solid black;
+  width : 300px;
   padding: 20px;
-  margin : 20px;
+  margin: 10px;  
+  border-radius: 15%;
   font-family: cursive;
+  background-color: #FAF0CA;
+  /* background-color:  #FAF0CA A23B72; */
+  transition: 1s ease;
+}
+.bookSingle:hover{
+  /* border-radius:50%;
+transition: 1s ease; */
+  /* box-shadow:
+1px 1px #373737,
+2px 2px #373737,
+3px 3px #373737,
+4px 4px #373737,
+5px 5px #373737,
+6px 6px #373737;
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
+transition: .5s ease; */
+
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px #000000;
+    transition: .5s ease;
+    
 }
 .App-header {
   background-color: #282c34;

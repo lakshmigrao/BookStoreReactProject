@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 import { useContext } from "react"
 import { BookContext } from "../App"
-function BookDetailsPage(){
+function BookDetailsPage({myBooks,setMyBooks}){
 
     const {title,isbn} = useParams()
     // const bookitem= useContext(BookContext)
@@ -11,22 +11,23 @@ function BookDetailsPage(){
     let navigate = useNavigate()
     
     let [bookDetails, setBookDetails] = useState()
-
-    const yourAPIKey = "AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//process.env.REACT_APP_KEY;
-    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+${isbn}&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
+//let [myBooks,setMyBooks]=useState([])
+    const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
+    let url = `https://www.googleapis.com/books/v1/volumes?q="${title}"+"${isbn}"&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
+    
     const getBookDetails = async() => { //async function getCoin() {}, function hoisting
         try{
             const response = await fetch(url)
             const data = await response.json()
             setBookDetails(data)
-            console.log("You are inside first try"+data)
+            //console.log("You are inside first try"+data)
         
         }catch(error){
             console.error(error)
         }
         
     }
-    console.log(bookDetails);
+    //console.log(bookDetails);
     
 
     useEffect(() => {
@@ -37,36 +38,23 @@ function BookDetailsPage(){
     function goBack(){
         navigate('/')//-1 to go back to previous page
     }
-    // const loaded = () => {
-    //     if(bookDetails.items){
-    //         return(
-    //     bookDetails.items.map((item, index) =>{
-    //         if(item!==undefined && item.id === id){
-    //             return (
-                    
-    //             <div className="container">
-    //                 <div className="containerleft">
-    //                     {item!==undefined?<h3>Title : {item.volumeInfo.title}</h3>:null}
-    //                     {item.volumeInfo.subtitle!==undefined?<h4>{item.volumeInfo.subtitle}</h4>:null}
-    //                     {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
-    //                     {item.volumeInfo.description!==undefined?<p>{item.volumeInfo.description}</p>:null}
-    //                     {item.volumeInfo.publisher!==undefined?<p>Publisher : {item.volumeInfo.publisher}</p>:null}
-    //                     {item.accessInfo.country!==undefined?<p>Country : {item.accessInfo.country}</p>:null}
-    //                     {item.volumeInfo.language!==undefined?<p>Language : {item.volumeInfo.language}</p>:null}
-    //                     {item.volumeInfo.categories!==undefined?<p>Categories : {item.volumeInfo.categories.join(', ')} </p>:null}
-    //                     {item.volumeInfo.publisher!==undefined?<p>Publisher : {item.volumeInfo.publisher}</p>:null}
-    //                 </div>
-    //                 <div className="containerright">
-    //                     {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail} />:null}
-    //                     <button onClick={goBack}>Back</button>
-    //                 </div>
-    //                 </div>
-    //             )}else
-    //                 return (<h1>Error in fetching the data.</h1>)
-                
-    //         }   ) 
-    //     )}
-    //     }
+    function addToMyBooks(item){
+        console.log("Book is added to ur list")
+        if(myBooks!==null){
+            let newArr = myBooks;
+            newArr.push(item)
+            setMyBooks(newArr)
+            console.log("Called setmybooks when not empty")
+            // console.log(myBooks)
+        }
+        else{
+            setMyBooks([item])
+            console.log("Called setmybooks when empty")
+            // console.log(myBooks)
+
+        }
+        console.log(myBooks)
+    }
 
     const loaded = () => {
         let item;
@@ -76,7 +64,7 @@ function BookDetailsPage(){
             console.log(bookDetails.items)
             console.log(isbn)
             for(let i=0;i<bookDetails.items.length;i++){
-                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier){
+                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')){
                     index=i;
                     break;
                 }
@@ -101,8 +89,10 @@ function BookDetailsPage(){
                     {item.volumeInfo.publisher!==undefined?<p>Publisher : {item.volumeInfo.publisher}</p>:null}
                 </div>
                 <div className="containerright">
-                    {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail} />:null}
+                    {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail} 
+                    style={{width:"300px", height:"300px"}} />:null}
                     <button onClick={goBack}>Back</button>
+                    
                 </div>
             </div>
         )}
@@ -116,7 +106,7 @@ function BookDetailsPage(){
             <div>Book Details Page Loading...</div>
         )
     }
-
+   
     return bookDetails ? loaded() : loading()
 
 }

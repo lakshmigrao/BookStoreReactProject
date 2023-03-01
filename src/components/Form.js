@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { BookContext } from "../App";
 import BookDisplay from "./BookDisplay";
-function Form(){
-    let [books, setBooks] = useState(null)
+function Form({books,setBooks,myBooks,setMyBooks}){
+    //let [books, setBooks] = useState(null)
     // const book = useContext(BookContext)
     let [input,setInput]=useState()
     ;
@@ -22,7 +22,7 @@ function Form(){
     async function getBooks(searchWord) {
         // console.log(title);
     
-        const yourAPIKey = "AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//process.env.REACT_APP_KEY;
+        const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
         let url = `https://www.googleapis.com/books/v1/volumes?q=${searchWord}&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
     
         // await (await fetch(url)).json()
@@ -31,7 +31,7 @@ function Form(){
           let response = await fetch(url); // returns a Promise
           let data = await response.json();
           setBooks(data);
-          console.log(data)
+          //console.log(data)
           // console.log("item.length" + data.items.length)
           // for(let i=0 ;i<data.items.length; i++){
           //   console.log(data.items[i].searchInfo.textSnippet)
@@ -67,7 +67,8 @@ function Form(){
                 <h1>Search for a book</h1>
                 <input value={input} onChange={handleChange} />
                 
-                <button>Search</button>      
+                <button>Search</button>
+                <button onClick={()=>{setBooks(""),setInput("")}}>Refresh</button>      
             </form>
             
             <div className="App">
