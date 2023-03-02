@@ -30,7 +30,7 @@ function FictionBooks({myBooks,setMyBooks}){
     //     console.log(myBooks)
     // }
     function addToMyBooks(item){
-  
+      alert(item.volumeInfo.title + " Book added to MyBooks.")
       console.log("Book is added to ur list")
       if(myBooks!==null){
           let newArr = myBooks;
@@ -47,7 +47,11 @@ function FictionBooks({myBooks,setMyBooks}){
       }
       console.log(myBooks)
   }
-      
+      function removeFromBooksList(removedItem){
+        let newBooks = booksByFiction.items.filter(item => item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')!==
+                                                                removedItem.item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,''))
+        setBooksByFiction(newBooks)                                                        
+      }
       const loaded = () => {
         const books =booksByFiction;
         return(<div className="App">
@@ -66,7 +70,7 @@ function FictionBooks({myBooks,setMyBooks}){
                     <h3>Title : {item.volumeInfo.title} </h3>
                     </Link>:null}
                     {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
-                    <button onClick={()=>addToMyBooks(item)}>Add to My Books</button>
+                    <button onClick={()=>{addToMyBooks(item),removeFromBooksList(item)}}>Add to My Books</button>
                   </div>
                 
                 )

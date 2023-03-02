@@ -1,5 +1,6 @@
 body{
   background-color:#3CCDC6;
+  margin:10px;
   animation-name: example;
   animation-duration : 10s;
   animation-iteration-count: infinite;
@@ -16,7 +17,7 @@ body{
 }
 .nav {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   /* background-color: black; */
   color: white;
   padding: 15px;
@@ -28,12 +29,12 @@ body{
   text-decoration: none;
 }
 .nav div{
-  margin:20px;
+  margin:10px;
 }
 .footerc {
-  margin-top: 150px;
+  margin-top: 200px;
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   /* background-color: black; */
   color: white;
   padding: 15px;
@@ -45,12 +46,14 @@ body{
   text-decoration: none;
 }
 .footerc div{
-  margin:20px;
+  margin:10px;
 }
 .header{
 background-image: url("./img/stackofbooks1.jpg");
-padding : 10px;
-width :90%;
+padding : 20px;
+width :100%;
+border-left: 40px;
+border-right: 40px;
 margin:0 auto;
 height : 350px;
 border-radius: 80px;
@@ -100,7 +103,12 @@ button:active{
 }
 
 .tab:hover{
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    /* box-shadow: 0 0 0 2px #000000; */
+    transition: .5s ease;
 }
 form{
   margin: 0 auto;
@@ -109,23 +117,20 @@ form{
   width : 500px;
 }
 .App {
-  
+  font-family: cursive;
   text-align: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
-
+div{
+  color:white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .bookSingle{
   border: 2px solid black;
@@ -136,8 +141,9 @@ form{
   border-radius: 15%;
   font-family: cursive;
   background-color: #FAF0CA;
+  color:black;
   /* background-color:  #FAF0CA A23B72; */
-  transition: 1s ease;
+  transition: .5s ease;
 }
 .bookSingle:hover{
   /* border-radius:50%;
@@ -159,6 +165,11 @@ transition: .5s ease; */
     box-shadow: 0 0 0 2px #000000;
     transition: .5s ease;
     
+}
+.bookSingle.button:hover:after{
+
+  background-color: green;
+
 }
 .App-header {
   background-color: #282c34;

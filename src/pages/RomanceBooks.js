@@ -25,9 +25,9 @@ function RomanceBooks({myBooks,setMyBooks}){
         
       }
     //   function addToMyBooks(item){
-    //     console.log("Book is added to ur list")
+    //     console.log("Book is added to localstorage")
     //     localStorage.setItem('myBooks',JSON.stringify(item))
-    //     console.log(myBooks)
+    //     
     // }
     function addToMyBooks(item){
   
@@ -46,6 +46,8 @@ function RomanceBooks({myBooks,setMyBooks}){
 
       }
       console.log(myBooks)
+      console.log("Book is added to localstorage")
+      localStorage.setItem('myBooksls',JSON.stringify(myBooks))
   }
       
       const loaded = () => {
