@@ -1,33 +1,59 @@
 body{
   background-color:#3CCDC6;
   animation-name: example;
-  animation-duration : 15s;
+  animation-duration : 10s;
   animation-iteration-count: infinite;
   /* #2E86AB ; */
 }
 @keyframes example {
-  0%{background-color:#3CCDC6 ;}
-  20%{background-color: white;}
-  40%{background-color: black;}
-  60%{background-color: black;}
-  80%{background-color: white;}
-  100%{background-color: #3CCDC6;}
+  0%{background-color:teal;}
+  20%{background-color: #3CCDC6 ;}
+  40%{background-color: skyblue;}
+  60%{background-color: skyblue ;}
+  80%{background-color: #3CCDC6}
+  100%{background-color: teal;}
   
 }
 .nav {
   display: flex;
   /* justify-content: space-between; */
-  background-color: black;
+  /* background-color: black; */
   color: white;
   padding: 15px;
   font-size: 2em;
   font-family: cursive;
 }
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+.nav div{
+  margin:20px;
+}
+.footerc {
+  margin-top: 150px;
+  display: flex;
+  /* justify-content: space-between; */
+  /* background-color: black; */
+  color: white;
+  padding: 15px;
+  font-size: 2em;
+  font-family: cursive;
+}
+.footerc a {
+  color: white;
+  text-decoration: none;
+}
+.footerc div{
+  margin:20px;
+}
 .header{
 background-image: url("./img/stackofbooks1.jpg");
 padding : 10px;
-width :100%;
+width :90%;
+margin:0 auto;
 height : 350px;
+border-radius: 80px;
 
 }
 button{
@@ -47,6 +73,9 @@ button:hover{
 button:active{
   background-color: navy;
   border: 2px solid blueviolet;
+}
+.search{
+  color : white;
 }
 .container{
   border : 0px solid black;
@@ -69,13 +98,7 @@ button:active{
   width : 500px;
   align-items: center;
 }
-.nav a {
-  color: white;
-  text-decoration: none;
-}
-.nav div{
-  margin:20px;
-}
+
 .tab:hover{
   text-decoration: underline;
 }

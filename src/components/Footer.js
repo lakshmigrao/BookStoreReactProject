@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReadingQuotes } from "../pages/ReadingQuotes";
-function Nav(props){
+function Footer(props){
     return(
         <>
-     <div className="nav">
+        <footer className="footerc">
             <Link to="/">
                 <div className="tab">Home</div>
             </Link>
@@ -35,14 +35,9 @@ function Nav(props){
                 <div className="tab">Romance</div>
             </Link>
             
-      </div>
-      <marquee style={{ color : "white", fontFamily : "cursive"}} id="scroll" scrolldelay="60" >
-        <h2>{ReadingQuotes}</h2> 
-        </marquee>
-      <div className="header">
-      </div>
+      </footer>
       
     </>)
 }
 
-export default Nav
+export default Footer

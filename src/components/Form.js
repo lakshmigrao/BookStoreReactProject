@@ -64,7 +64,7 @@ function Form({books,setBooks,myBooks,setMyBooks}){
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <h1>Search for a book</h1>
+                <h1 className="search">Search for a book</h1>
                 <input value={input} onChange={handleChange} />
                 
                 <button>Search</button>
@@ -81,7 +81,7 @@ function Form({books,setBooks,myBooks,setMyBooks}){
             <div>
               {/* <img src={"../img/stackofbooks1.jpg"} alt="Stack of books"/> */}
                 <form onSubmit={handleSubmit}>
-                    <h1>Search for a book</h1>
+                    <h1 className="search">Search for a book</h1>
                     <input value={input} onChange={handleChange} placeholder="Search for books, authors, publishers" style={{width :"250px", fontFamily:"cursive"}}/>
                     <button>Search</button>
                     {/* {bookDetailsArr.map((item,index) => 

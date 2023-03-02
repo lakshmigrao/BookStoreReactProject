@@ -1,5 +1,4 @@
-import { useState, useContext, useEffect } from "react";
-import { BookContext } from "../App";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 function FictionBooks({myBooks,setMyBooks}){
 
@@ -18,11 +17,7 @@ function FictionBooks({myBooks,setMyBooks}){
           let response = await fetch(url); 
           let data = await response.json();
           setBooksbyfiction(data);
-          //console.log(data)
-          // for(let i=0 ;i<data.items.length; i++){
-          //   console.log(data.items[i].volumeInfo.title)
-
-          // }
+          
         } catch (error) {
           console.log("something went wrong");
           console.log("error")
@@ -41,12 +36,12 @@ function FictionBooks({myBooks,setMyBooks}){
           let newArr = myBooks;
           newArr.push(item)
           setMyBooks(newArr)
-          console.log("Called setmybooks when not empty")
+          //console.log("Called setmybooks when not empty")
           
       }
       else{
           setMyBooks([item])
-          console.log("Called setmybooks when empty")
+          //console.log("Called setmybooks when empty")
           
 
       }
@@ -70,9 +65,7 @@ function FictionBooks({myBooks,setMyBooks}){
                       {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
                     <h3>Title : {item.volumeInfo.title} </h3>
                     </Link>:null}
-                    {/* <h4>{item.volumeInfo.subtitle}</h4> */}
                     {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
-                    {/* {item.searchInfo!==undefined?<p>{item.searchInfo.textSnippet}</p>:null} */}
                     <button onClick={()=>addToMyBooks(item)}>Add to My Books</button>
                   </div>
                 
@@ -83,7 +76,7 @@ function FictionBooks({myBooks,setMyBooks}){
       }
           const loading = () => {
             return(
-                <div>Book Details Page Loading...</div>
+                <h1 style={{fontFamily:"cursive"}}>Book Details Page Loading...</h1>
             )
         }
           return booksbyfiction?loaded():loading()

@@ -16,6 +16,7 @@ import ScienceBooks from "./pages/ScienceBooks";
 import ComputerBooks from "./pages/ComputerBooks";
 import PoliticsBooks from "./pages/PoliticsBooks";
 import GeographyBooks from "./pages/Geography";
+import Footer from "./components/Footer";
 export const BookContext = createContext();
 
 function App() {
@@ -35,12 +36,13 @@ return(
         <Route path="/mybooks" element={<MyBooks myBooks={myBooks} setMyBooks={setMyBooks}/>} />
         <Route path="/booksbynonfiction" element={< NonFictionBooks/>}/>
         <Route path="/booksbyfiction" element={< FictionBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
-        <Route path="/booksbyfictionkids" element={< FictionBooksKids/>}/>
+        <Route path="/booksbyfictionkids" element={< FictionBooksKids myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         <Route path="/booksbyscience" element={< ScienceBooks />}/>
         <Route path="/booksbycomputers" element={< ComputerBooks />}/>
         <Route path="/booksbypolitics" element={< PoliticsBooks />}/>
         <Route path="/booksbygeography" element={< GeographyBooks />}/>
         </Routes>
+        <Footer />
         {/* (book?{book.items[0].volumeInfo.title}:null) */}
       </div>)
       // </BookContext.Provider>)

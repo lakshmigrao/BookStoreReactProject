@@ -8,7 +8,7 @@ function MyBooks({myBooks,setMyBooks}){
         setMyBooks(newArr)
     }
     console.log(myBooks)
-    if(myBooks.length==0){  
+    if(myBooks){  
         return( 
             <div className="App">
             {myBooks.map((item,index) => {
@@ -25,42 +25,9 @@ function MyBooks({myBooks,setMyBooks}){
         }) }
         </div>)
     }   
-    
-        
-         
-
-            
-        
-        //     myBooks.items.map(( item,index) =>{
-        //     let temptitle, tempIsbn;
-        //     if(item.volumeInfo.title){temptitle = item.volumeInfo.title.replace(/[?:'@#$%^&*/]/g,'')}
-        //     if(item.volumeInfo.industryIdentifiers[0]){tempIsbn = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')}
-        //     console.log(temptitle)
-        //     return( <>
-        //         We are here
-        //         <div key={index} className="bookSingle">
-        //         {item.volumeInfo.industryIdentifiers!==undefined?
-        //             <Link to={`/bookdetails/${temptitle}/${tempIsbn}`}>
-        //             {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
-        //             <h3>Title : {item.volumeInfo.title} </h3>
-        //             </Link>
-        //         :null}
-        //         <h4>{item.volumeInfo.subtitle}</h4>
-        //         {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
-        //         {item.searchInfo!==undefined?<p>{item.searchInfo.textSnippet}</p>:null}
-        //        </div>
-        //        </>
-        //     )
-        //     }
-        //     )
-       
-    
-        
-        // )  }
-    
     else{
         return(
-            <div>My Books is empty.</div>
+            <h1>No Books in My Books List.</h1>
         )
 
     }}
