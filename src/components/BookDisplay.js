@@ -21,7 +21,7 @@ function BookDisplay({ books }) {
               <h3>Title : {item.volumeInfo.title} </h3>
               </Link>:null}
 
-              <h4>{item.volumeInfo.subtitle}</h4>
+              {/* <h4>{item.volumeInfo.subtitle}</h4> */}
               {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
               {/* {item.searchInfo!==undefined?<p>{item.searchInfo.textSnippet}</p>:null} */}
               <button onClick={()=>{addToMyBooks(item)}}>Add to My Books</button>

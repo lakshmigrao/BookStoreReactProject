@@ -1,19 +1,29 @@
+import { useEffect } from "react";
 import BookDisplay from "../components/BookDisplay";
 
 function MyBooks({myBooks,setMyBooks}){
+    function removeFromMyBooks(index){
+        let newArr = myBooks.slice()
+       newArr.splice(index,1)
+        setMyBooks(newArr)
+    }
     console.log(myBooks)
-    if(myBooks){    
-        for(let i=0 ; i<myBooks.length ; i++){
+    if(myBooks.length==0){  
+        return( 
+            <div className="App">
+            {myBooks.map((item,index) => {
             return(                
-                <div className="bookSingle">
-                    {myBooks[i].volumeInfo.imageLinks!==undefined?<img src={myBooks[i].volumeInfo.imageLinks.thumbnail}/>:null}
-                    {myBooks[i].volumeInfo.title!==undefined?<><h3>Title : {myBooks[i].volumeInfo.title} </h3><h4>{myBooks[i].volumeInfo.subtitle}</h4></>:null}
-                    {myBooks[i].volumeInfo.authors!==undefined?<h3>Author(s) : {myBooks[i].volumeInfo.authors.join(', ')}</h3>:null}
-                    {myBooks[i].searchInfo!==undefined?<p>{myBooks[i].searchInfo.textSnippet}</p>:null}
+                <div key={index} className="bookSingle">
+                    {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
+                    {item.volumeInfo.title!==undefined?<><h3>Title : {item.volumeInfo.title} </h3><h4>{item.volumeInfo.subtitle}</h4></>:null}
+                    {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
+                    <button onClick={()=>removeFromMyBooks(index)}> Remove </button>
+                
                </div>
               
             )
-        }
+        }) }
+        </div>)
     }   
     
         
