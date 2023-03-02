@@ -23,7 +23,7 @@ function BookDisplay({ books,myBooks,setMyBooks }) {
 }
   
   if(books.items){
-    const [buttonText,setButtonText] = useState("Add to My Books")
+    //const [buttonText,setButtonText] = useState("Add to My Books")
     return (
     
   books.items.map(( item,index) =>{
@@ -40,7 +40,7 @@ function BookDisplay({ books,myBooks,setMyBooks }) {
               </Link>:null}
               {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
               
-              <button onClick={()=>{addToMyBooks(item)}}>{buttonText}</button>
+              <button onClick={()=>{addToMyBooks(item)}}>Add to My Books</button>
              </div>
            )}
            )
