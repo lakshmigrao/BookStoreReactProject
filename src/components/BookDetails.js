@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
-function BookDetailsPage({myBooks,setMyBooks}){
+function BookDetails({myBooks,setMyBooks}){
 
     const {title,isbn} = useParams()
     console.log("Useparams are ", title, isbn )
@@ -107,4 +107,4 @@ function BookDetailsPage({myBooks,setMyBooks}){
 
 }
 
-export default BookDetailsPage
+export default BookDetails

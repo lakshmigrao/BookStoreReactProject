@@ -4,8 +4,7 @@ import Form from "./components/Form";
 import { createContext } from "react";
 import { Route,Routes } from "react-router-dom";
 import Nav from "./components/Nav";
-import BookDetailsPage from "./components/BookDetailsPage";
-import BookDisplay from "./components/BookDisplay";
+import BookDetails from "./components/BookDetails";
 import NonFictionBooks from "./pages/NonFictionBooks";
 import MyBooks from "./pages/MyBooks";
 import FictionBooks from "./pages/FictionBooks";
@@ -23,13 +22,13 @@ function App() {
  let [myBooks,setMyBooks]=useState([])
   
 return(
-//  <BookContext.Provider value= {book}?{book}:null>
+
   <div >
         <Nav />
         <Routes>
         <Route path="/" element={<Form books={books} setBooks={setBooks} myBooks={myBooks} setMyBooks={setMyBooks}/>} />
         <Route path="/booksbyromance" element={< RomanceBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
-        <Route path="/bookdetails/:title/:isbn" element={< BookDetailsPage myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
+        <Route path="/bookdetails/:title/:isbn" element={< BookDetails myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         <Route path="/mybooks" element={<MyBooks myBooks={myBooks} setMyBooks={setMyBooks}/>} />
         <Route path="/booksbynonfiction" element={< NonFictionBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         <Route path="/booksbyfiction" element={< FictionBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
