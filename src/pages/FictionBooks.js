@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 function FictionBooks({myBooks,setMyBooks}){
 
-    let [booksbyfiction, setBooksbyfiction] = useState(null)
+    let [booksByFiction, setBooksByFiction] = useState(null)
     let  books;
     useEffect(()=> {
         getBooksbyFiction();
@@ -16,7 +16,7 @@ function FictionBooks({myBooks,setMyBooks}){
         try {
           let response = await fetch(url); 
           let data = await response.json();
-          setBooksbyfiction(data);
+          setBooksByFiction(data);
           
         } catch (error) {
           console.log("something went wrong");
@@ -49,7 +49,7 @@ function FictionBooks({myBooks,setMyBooks}){
   }
       
       const loaded = () => {
-        const books =booksbyfiction;
+        const books =booksByFiction;
         return(<div className="App">
 
             {books.items.map(( item,index) =>{
@@ -79,7 +79,7 @@ function FictionBooks({myBooks,setMyBooks}){
                 <h1 style={{fontFamily:"cursive"}}>Book Details Page Loading...</h1>
             )
         }
-          return booksbyfiction?loaded():loading()
+          return booksByFiction?loaded():loading()
      }
 
 

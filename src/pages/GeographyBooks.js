@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function FictionBooksKids({myBooks,setMyBooks}){
+function GeographyBooks({myBooks,setMyBooks}){
 
-    let [booksByFictionKids, setBooksByFictionKids] = useState(null)
+    let [booksByGeography, setBooksByGeography] = useState(null)
     let  books;
     useEffect(()=> {
-        getBooksbyFictionKids();
+        getBooksbyGeography();
     },[])
-    async function getBooksbyFictionKids() {
+    async function getBooksbyGeography() {
     
         const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
-        let url = `https://www.googleapis.com/books/v1/volumes?q=fiction+kid&maxResults=30&key=${yourAPIKey}`
+        let url = `https://www.googleapis.com/books/v1/volumes?q=geography+countries+continents+maps+oceans+mountains+volcano&maxResults=30&key=${yourAPIKey}`
        
         
         try {
           let response = await fetch(url); 
           let data = await response.json();
-          setBooksByFictionKids(data);
+          setBooksByGeography(data);
           
         } catch (error) {
           console.log("something went wrong");
@@ -49,7 +49,7 @@ function FictionBooksKids({myBooks,setMyBooks}){
   }
       
       const loaded = () => {
-        const books =booksByFictionKids;
+        const books =booksByGeography;
         return(<div className="App">
 
             {books.items.map(( item,index) =>{
@@ -79,10 +79,10 @@ function FictionBooksKids({myBooks,setMyBooks}){
                 <h1 style={{fontFamily:"cursive"}}>Book Details Page Loading...</h1>
             )
         }
-          return booksByFictionKids?loaded():loading()
+          return booksByGeography?loaded():loading()
      }
 
 
 
 
-export default FictionBooksKids;
+export default GeographyBooks;

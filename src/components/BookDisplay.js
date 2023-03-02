@@ -2,8 +2,26 @@ import Form from "./Form"
 import { Link } from "react-router-dom";
 import { createContext } from "react";
 export const BookContext = createContext();
-function BookDisplay({ books }) {
+function BookDisplay({ books,myBooks,setMyBooks }) {
 
+  function addToMyBooks(item){
+  
+    console.log("Book is added to ur list")
+    if(myBooks!==null){
+        let newArr = myBooks;
+        newArr.push(item)
+        setMyBooks(newArr)
+        //console.log("Called setmybooks when not empty")
+        
+    }
+    else{
+        setMyBooks([item])
+        //console.log("Called setmybooks when empty")
+        
+
+    }
+    console.log(myBooks)
+}
   
   if(books.items){
     return (
@@ -20,14 +38,9 @@ function BookDisplay({ books }) {
                 {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
               <h3>Title : {item.volumeInfo.title} </h3>
               </Link>:null}
-
-              {/* <h4>{item.volumeInfo.subtitle}</h4> */}
               {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
-              {/* {item.searchInfo!==undefined?<p>{item.searchInfo.textSnippet}</p>:null} */}
               <button onClick={()=>{addToMyBooks(item)}}>Add to My Books</button>
-              {/* {item.id!==undefined?<h1>{item.id}</h1>:null} */}
-              {/* <Link>{item.volumeInfo.imageLinks[0].thumbnail}</Link>          */}
-           </div>
+             </div>
            )}
            )
    )  

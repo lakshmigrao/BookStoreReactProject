@@ -1,17 +1,13 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
-import { useContext } from "react"
-import { BookContext } from "../App"
 function BookDetailsPage({myBooks,setMyBooks}){
 
     const {title,isbn} = useParams()
-    // const bookitem= useContext(BookContext)
     console.log("Useparams are ", title, isbn )
     let navigate = useNavigate()
     
     let [bookDetails, setBookDetails] = useState()
-//let [myBooks,setMyBooks]=useState([])
     const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
     let url = `https://www.googleapis.com/books/v1/volumes?q="${title}"+"${isbn}"&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
     

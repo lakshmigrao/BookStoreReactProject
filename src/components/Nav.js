@@ -25,7 +25,7 @@ function Nav(props){
             <Link to="/booksbycomputers">
                 <div className="tab">Computers</div>
             </Link>
-            <Link to="/booksbypolitics">
+            <Link to="/booksbyhistorypolitics">
                 <div className="tab">History&Politics</div>
             </Link>
             <Link to="/booksbygeography">

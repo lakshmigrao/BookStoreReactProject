@@ -2,21 +2,20 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Form from "./components/Form";
 import { createContext } from "react";
-import { Route,Router,Routes } from "react-router-dom";
-import BooksbyCategories from "./pages/BooksbyRomance";
+import { Route,Routes } from "react-router-dom";
 import Nav from "./components/Nav";
-import BookDetailsPage from "./pages/BookDetailsPage";
+import BookDetailsPage from "./components/BookDetailsPage";
 import BookDisplay from "./components/BookDisplay";
 import NonFictionBooks from "./pages/NonFictionBooks";
 import MyBooks from "./pages/MyBooks";
-import BooksbyRomance from "./pages/BooksbyRomance";
 import FictionBooks from "./pages/FictionBooks";
 import FictionBooksKids from "./pages/FictionBookKids";
 import ScienceBooks from "./pages/ScienceBooks";
 import ComputerBooks from "./pages/ComputerBooks";
-import PoliticsBooks from "./pages/PoliticsBooks";
-import GeographyBooks from "./pages/Geography";
+import HistoryPoliticsBooks from "./pages/HistoryPoliticsBooks";
+import GeographyBooks from "./pages/GeographyBooks";
 import Footer from "./components/Footer";
+import RomanceBooks from "./pages/RomanceBooks";
 export const BookContext = createContext();
 
 function App() {
@@ -26,26 +25,22 @@ function App() {
 return(
 //  <BookContext.Provider value= {book}?{book}:null>
   <div >
-        {/* <Form /> */}
         <Nav />
         <Routes>
         <Route path="/" element={<Form books={books} setBooks={setBooks} myBooks={myBooks} setMyBooks={setMyBooks}/>} />
-        <Route path="/booksbyromance" element={< BooksbyRomance/>}/>
+        <Route path="/booksbyromance" element={< RomanceBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         <Route path="/bookdetails/:title/:isbn" element={< BookDetailsPage myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
-        {/* <Route path="/searchpage" element={<BookDisplay />} /> */}
         <Route path="/mybooks" element={<MyBooks myBooks={myBooks} setMyBooks={setMyBooks}/>} />
-        <Route path="/booksbynonfiction" element={< NonFictionBooks/>}/>
+        <Route path="/booksbynonfiction" element={< NonFictionBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         <Route path="/booksbyfiction" element={< FictionBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         <Route path="/booksbyfictionkids" element={< FictionBooksKids myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
-        <Route path="/booksbyscience" element={< ScienceBooks />}/>
-        <Route path="/booksbycomputers" element={< ComputerBooks />}/>
-        <Route path="/booksbypolitics" element={< PoliticsBooks />}/>
-        <Route path="/booksbygeography" element={< GeographyBooks />}/>
+        <Route path="/booksbyscience" element={< ScienceBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
+        <Route path="/booksbycomputers" element={< ComputerBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
+        <Route path="/booksbyhistorypolitics" element={< HistoryPoliticsBooks myBooks={myBooks} setMyBooks={setMyBooks} />}/>
+        <Route path="/booksbygeography" element={< GeographyBooks myBooks={myBooks} setMyBooks={setMyBooks}/>}/>
         </Routes>
         <Footer />
-        {/* (book?{book.items[0].volumeInfo.title}:null) */}
       </div>)
-      // </BookContext.Provider>)
 }
 
 export default App;

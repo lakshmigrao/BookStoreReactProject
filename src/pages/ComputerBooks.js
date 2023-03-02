@@ -1,58 +1,72 @@
-import { useState, useContext, useEffect } from "react";
-import { BookContext } from "../App";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function ComputerBooks(){
+function ComputerBooks({myBooks,setMyBooks}){
 
-    let [booksComputer, setBooksComputer] = useState(null)
+    let [booksByComputer, setBooksByComputer] = useState(null)
     let  books;
-
     useEffect(()=> {
-        getBooksComputer();
+        getBooksbyComputer();
     },[])
-    async function getBooksComputer() {
-        // console.log(title);
+    async function getBooksbyComputer() {
     
         const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
         let url = `https://www.googleapis.com/books/v1/volumes?q=computer+webdevelopment+software&maxResults=30&key=${yourAPIKey}`
-        //`https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?maxResults=30&key=${yourAPIKey}`
-        //`https://www.googleapis.com/books/v1/volumes?maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
+       
         
         try {
           let response = await fetch(url); 
           let data = await response.json();
-          setBooksComputer(data);
-          console.log(data)
-          console.log("item.length" + data.items.length)
-          for(let i=0 ;i<data.items.length; i++){
-            console.log(data.items[i].volumeInfo.title)
-            // bookDetailsArr[i]=data.items[i].volumeInfo.title;
-          }
+          setBooksByComputer(data);
+          
         } catch (error) {
           console.log("something went wrong");
+          console.log("error")
         }
         
       }
+    //   function addToMyBooks(item){
+    //     console.log("Book is added to ur list")
+    //     localStorage.setItem('myBooks',JSON.stringify(item))
+    //     console.log(myBooks)
+    // }
+    function addToMyBooks(item){
+  
+      console.log("Book is added to ur list")
+      if(myBooks!==null){
+          let newArr = myBooks;
+          newArr.push(item)
+          setMyBooks(newArr)
+          //console.log("Called setmybooks when not empty")
+          
+      }
+      else{
+          setMyBooks([item])
+          //console.log("Called setmybooks when empty")
+          
+
+      }
+      console.log(myBooks)
+  }
       
       const loaded = () => {
-        const books =booksComputer;
+        const books =booksByComputer;
         return(<div className="App">
 
             {books.items.map(( item,index) =>{
                 
-              let temptitle, temppublisher;
-              if(item.volumeInfo.title){temptitle = item.volumeInfo.title.replace('?','')}
-              if(item.volumeInfo.publisher){temppublisher = item.volumeInfo.publisher.replace('?','')}
-              console.log(temptitle,temppublisher)
+              let temptitle, tempIdentifier;
+              if(item.volumeInfo.title){temptitle = item.volumeInfo.title.replace(/[?:'@#$%^&*/]/g,'')}
+              if(item.volumeInfo.industryIdentifiers!==undefined){tempIdentifier = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')}
+              console.log(temptitle)
                 return(
                   <div key={index} className="bookSingle">
                     {item.volumeInfo.industryIdentifiers!==undefined?
-                    <Link to={`/bookdetails/${temptitle}/${item.volumeInfo.industryIdentifiers[0].identifier}`}>
+                    <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
                       {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
                     <h3>Title : {item.volumeInfo.title} </h3>
                     </Link>:null}
-                    <h4>{item.volumeInfo.subtitle}</h4>
                     {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
-                    {item.searchInfo!==undefined?<p>{item.searchInfo.textSnippet}</p>:null}
+                    <button onClick={()=>addToMyBooks(item)}>Add to My Books</button>
                   </div>
                 
                 )
@@ -62,10 +76,10 @@ function ComputerBooks(){
       }
           const loading = () => {
             return(
-                <div>Book Details Page Loading...</div>
+                <h1 style={{fontFamily:"cursive"}}>Book Details Page Loading...</h1>
             )
         }
-          return booksComputer?loaded():loading()
+          return booksByComputer?loaded():loading()
      }
 
 
