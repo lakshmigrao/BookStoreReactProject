@@ -34,7 +34,7 @@ function Form({books,setBooks,myBooks,setMyBooks}){
                 <input value={input} onChange={handleChange} />
                 
                 <button>Search</button>
-                <button onClick={()=>{setBooks(""),setInput("")}}>Refresh</button>      
+                <button onClick={()=>{setBooks("");setInput("")}}>Refresh</button>      
             </form>
             
             <div className="App">
