@@ -8,7 +8,7 @@ function BookDetails({myBooks,setMyBooks}){
     let navigate = useNavigate()
     
     let [bookDetails, setBookDetails] = useState()
-    const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
+    const yourAPIKey = process.env.REACT_APP_KEY;
     let url = `https://www.googleapis.com/books/v1/volumes?q="${title}"+"${isbn}"&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
     
     const getBookDetails = async() => { //async function getCoin() {}, function hoisting
@@ -16,16 +16,13 @@ function BookDetails({myBooks,setMyBooks}){
             const response = await fetch(url)
             const data = await response.json()
             setBookDetails(data)
-            //console.log("You are inside first try"+data)
+         
         
         }catch(error){
             console.error(error)
         }
         
     }
-    //console.log(bookDetails);
-    
-
     useEffect(() => {
         getBookDetails()
     }, [])
@@ -34,24 +31,6 @@ function BookDetails({myBooks,setMyBooks}){
     function goBack(){
         navigate('/')//-1 to go back to previous page
     }
-    function addToMyBooks(item){
-        console.log("Book is added to ur list")
-        if(myBooks!==null){
-            let newArr = myBooks;
-            newArr.push(item)
-            setMyBooks(newArr)
-            console.log("Called setmybooks when not empty")
-            // console.log(myBooks)
-        }
-        else{
-            setMyBooks([item])
-            console.log("Called setmybooks when empty")
-            // console.log(myBooks)
-
-        }
-        console.log(myBooks)
-    }
-
     const loaded = () => {
         let item;
         let index;
@@ -85,8 +64,7 @@ function BookDetails({myBooks,setMyBooks}){
                     {item.volumeInfo.publisher!==undefined?<p>Publisher : {item.volumeInfo.publisher}</p>:null}
                 </div>
                 <div className="containerright">
-                    {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail} 
-                    style={{width:"300px", height:"300px"}} />:null}
+                    {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail} />:null}
                     <button onClick={goBack}>Back</button>
                     
                 </div>

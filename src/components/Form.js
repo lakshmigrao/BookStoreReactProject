@@ -47,7 +47,7 @@ function Form({books,setBooks,myBooks,setMyBooks}){
             <div>
                 <form onSubmit={handleSubmit}>
                     <h1 className="search">Search for a book</h1>
-                    <input value={input} onChange={handleChange} placeholder="Search for books, authors, publishers" style={{width :"250px", fontFamily:"cursive"}}/>
+                    <input value={input} onChange={handleChange} placeholder="Search for books, authors, publishers" style={{width :"250px"}}/>
                     <button>Search</button>
                 </form>
             </div>

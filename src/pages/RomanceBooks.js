@@ -24,27 +24,18 @@ function RomanceBooks({myBooks,setMyBooks}){
         }
         
       }
-    //   function addToMyBooks(item){
-    //     console.log("Book is added to localstorage")
-    //     localStorage.setItem('myBooks',JSON.stringify(item))
-    //     
-    // }
     function addToMyBooks(item){
   
       console.log("Book is added to ur list")
       if(myBooks!==null){
           let newArr = myBooks;
           newArr.push(item)
-          setMyBooks(newArr)
-          //console.log("Called setmybooks when not empty")
-          
+          setMyBooks(newArr)        
       }
       else{
           setMyBooks([item])
-          //console.log("Called setmybooks when empty")
-          
-
       }
+      alert(item.volumeInfo.title + " Book added to MyBooks.")
       console.log(myBooks)
       console.log("Book is added to localstorage")
       localStorage.setItem('myBooksls',JSON.stringify(myBooks))
@@ -65,9 +56,9 @@ function RomanceBooks({myBooks,setMyBooks}){
                     {item.volumeInfo.industryIdentifiers!==undefined?
                     <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
                       {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
-                    <h3>Title : {item.volumeInfo.title} </h3>
+                    <h5>Title : {item.volumeInfo.title} </h5>
                     </Link>:null}
-                    {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
+                    {item.volumeInfo.authors!==undefined?<h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5>:null}
                     <button onClick={()=>addToMyBooks(item)}>Add to My Books</button>
                   </div>
                 
@@ -78,7 +69,7 @@ function RomanceBooks({myBooks,setMyBooks}){
       }
           const loading = () => {
             return(
-                <h1 style={{fontFamily:"cursive"}}>Book Details Page Loading...</h1>
+                <h1>Book Details Page Loading...</h1>
             )
         }
           return booksByRomance?loaded():loading()

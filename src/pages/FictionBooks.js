@@ -30,8 +30,6 @@ function FictionBooks({ myBooks, setMyBooks }) {
   //     console.log(myBooks)
   // }
   function addToMyBooks(item) {
-    alert(item.volumeInfo.title + " Book added to MyBooks.")
-    console.log("Book is added to ur list")
     if (myBooks !== null) {
       let newArr = myBooks;
       newArr.push(item)
@@ -45,7 +43,8 @@ function FictionBooks({ myBooks, setMyBooks }) {
 
 
     }
-    console.log(myBooks)
+    alert(item.volumeInfo.title + " Book added to MyBooks.")
+    console.log("Book is added to ur list")
     console.log("Book is added to localstorage")
     localStorage.setItem('myBooksls', JSON.stringify(myBooks))
   }
@@ -68,10 +67,10 @@ function FictionBooks({ myBooks, setMyBooks }) {
           <div key={index} className="bookSingle">
             {item.volumeInfo.industryIdentifiers !== undefined ?
               <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
-                {item.volumeInfo.imageLinks !== undefined ? <img src={item.volumeInfo.imageLinks.thumbnail} /> : null}
-                <h3>Title : {item.volumeInfo.title} </h3>
+                {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
+                <h5>Title : {item.volumeInfo.title} </h5>
               </Link> : null}
-            {item.volumeInfo.authors !== undefined ? <h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3> : null}
+            {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null}
             <button onClick={() => { addToMyBooks(item) }}>Add to My Books</button>
           </div>
 
@@ -82,7 +81,7 @@ function FictionBooks({ myBooks, setMyBooks }) {
   }
   const loading = () => {
     return (
-      <h1 style={{ fontFamily: "cursive" }}>Book Details Page Loading...</h1>
+      <h1>Book Details Page Loading...</h1>
     )
   }
   return booksByFiction ? loaded() : loading()
