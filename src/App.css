@@ -4,7 +4,6 @@
 }
 body{
   /* background-color:#3CCDC6; */
-  
   margin:10px;
   /* background-image: url("./img/stackofbooks1.jpg"); */
   /* opacity: 0.1; */
@@ -14,7 +13,7 @@ body{
   /* #2E86AB ; */
 }
 .imageHeader{
-  opacity:0.6;
+  opacity:.8;
  }
 /* .imageSlider{
   margin:0;
@@ -61,6 +60,12 @@ body{
   80%{background-color: #3CCDC6}
   100%{background-color: teal;}
    */
+   /* 0%{background-color:white;}
+  20%{background-color: whitesmoke ;}
+  40%{background-color: white;}
+  60%{background-color: whitesmoke ;}
+  80%{background-color: white}
+  100%{background-color: whitesmoke;} */
 }
 .nav {
   display: flex;
@@ -103,9 +108,9 @@ width :100%;
 /* /* border-left: 40px; */
 /* border-right: 0px; */
 /* margin:0 auto; */
-height : 400px;
+height : 250px;
 /* border-radius: 80px; */
-overflow: hidden;
+display: flex;
 }
 button{
   transition-duration: 0.4s;
@@ -188,6 +193,7 @@ form{
   padding: 20px;
   margin: 10px;  
   border-radius: 15%;
+  /* background-color: lightyellow; */
   background-color: #FAF0CA;
   color:black;
   /* background-color:  #FAF0CA A23B72; */
