@@ -25,23 +25,24 @@ function BookDisplay({ books, myBooks, setMyBooks }) {
 
       books.items.map((item, index) => {
         let temptitle, tempIsbn;
-        if (item.volumeInfo.title) { temptitle = item.volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g,'') }
-        if (item.volumeInfo.industryIdentifiers!==undefined) { 
-          tempIsbn = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g,'') 
-        console.log(temptitle)
-        return (
-          <div key={index} className="bookSingle">
+        if (item.volumeInfo.title) { temptitle = item.volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g,'') }//encodeURIComponent(item.volumeInfo.title) }//
+        if (item.volumeInfo.industryIdentifiers !== undefined) {
+          tempIsbn = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g,'')//encodeURIComponent(item.volumeInfo.industryIdentifiers[0].identifier)// 
+          console.log(temptitle)
+          return (
+            <div key={index} className="bookSingle">
               <button onClick={() => { addToMyBooks(item) }}>Add to My Books</button>
               <Link to={`/bookdetails/${temptitle}/${tempIsbn}`}>
                 {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
                 <h5 className="bookTitle">{item.volumeInfo.title} </h5>
-              </Link> 
-            {/* {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null} */}
-          </div>
-        )
-      }else{
-        return null
-      }}
+              </Link>
+              {/* {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null} */}
+            </div>
+          )
+        } else {
+          return null
+        }
+      }
       )
     )
 

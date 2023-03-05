@@ -293,3 +293,8 @@ top:250px;
   margin-bottom: 20px;
   padding: 1em;
 }
+.removeAll{
+  position: fixed;
+  right: 0px;
+  
+}

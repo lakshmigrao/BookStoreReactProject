@@ -40,13 +40,16 @@ function BookDetails({myBooks,setMyBooks}){
             console.log("bookDetails.items")
             console.log(bookDetails.items)
             console.log(isbn)
-            for(let i=0;i<bookDetails.items.length;i++){                                           
-                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g, '')
-                || title===bookDetails.items[i].volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g, '')
+            
+            for(let i=0;i<bookDetails.items.length;i++){            
+                if(bookDetails.items[i].volumeInfo.title
+                    && bookDetails.items[i].volumeInfo.industryIdentifiers){                               
+                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g, '')//encodeURIComponent(bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier)//
+                || title===bookDetails.items[i].volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g, '')//encodeURIComponent(bookDetails.items[i].volumeInfo.title)//
                 ){
                     index=i;
                     break;
-                }
+                }}
 
             }
             //item = bookDetails.items.filter(book =>id === book.id)
@@ -70,7 +73,12 @@ function BookDetails({myBooks,setMyBooks}){
                     <button onClick={goBack}>Back</button>
                     
             </div>
-        )}
+        )}else{
+            return(<>
+                <h1>The Book details not found in database.</h1>
+                <button onClick={goBack}>Back</button>
+            </>)
+        }
         }else{
             return(<>
                 <h1>The Book details not found in database.</h1>

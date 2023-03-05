@@ -18,11 +18,20 @@ function MyBooks({ myBooks, setMyBooks }) {
         localStorage.setItem('myBooksls', JSON.stringify(newArr))
 
     }
+    function removeAll(){
+        let newArr = [];
+        setMyBooks(newArr)
+        localStorage.setItem('myBooksls', JSON.stringify(newArr))
+
+    }
     console.log(myBooks)
     if (myBooks.length) {
 
-        return (<div className="App">
+        return (<>
+        <button className="removeAll" onClick={()=>{removeAll()}}>Remove All</button>
+        <div className="App">
             <h1 className="leftTab">My Books</h1>
+            
             {myBooks.map((item, index) => {
 
                 let temptitle, tempIdentifier;
@@ -45,7 +54,7 @@ function MyBooks({ myBooks, setMyBooks }) {
                 }
             }
             )
-            }</div>)
+            }</div></>)
 
         // return( 
         //     <div className="App">
