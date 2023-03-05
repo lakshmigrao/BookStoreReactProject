@@ -1,51 +1,56 @@
-# BookStoreReactProject
-
-Project Title: Bookstore App
+# Project Title: Bookstore App
 
 Bookstore is an App that provides the details of any book when the user searches with the title name, author's name or any word related to the description. This is a React JS project developed using Google API to fetch the details of books.
 
-Live Link: 
+## Live Link: 
 https://magnificent-starlight-40156a.netlify.app/
 
-About the Project:
+## About the Project:
 
 This project lets the user search for a book with title name, authors name or a word from description. From the search results, the user can add a book to MyBooks list or click on the book to get more details.
-The first page is the homepage of the app. There is a navigation tab which gives different categories of books. On clicking each tab takes the user to the dedicated pages where books of different category are displayed. There is a search tab on homepage where books can be searched. MyBooks tab on the navigation bar takes the user to MyBooks page. When books are displayed, there is an "Add to My Books" button with each book. When the button is clicked, that book is saved into MyBooks. There is an option to remove a book from MyBooks too. When the button "Remove" with each book on the My Books page is clicked, that book is removed from MyBooks. There is a “Remove All” button on MyBooks pages and when clicked, all the books in MyBooks will be removed.  There is a "go back" button on each page which takes the user to previous page. The MyBooks list is stored using localStorage, hence the MyBooks data is not lost when the page is refreshed. 
 
-Screenshots:
+The first page is the homepage of the app. There is a navigation tab which gives options to choose from HomePage, My Books and different categories of books. On clicking each tab takes the user to the dedicated pages where books of different category are displayed. There is a search tab on homepage where books can be searched. MyBooks tab on the navigation bar takes the user to MyBooks page. When books are displayed, there is an "Add to My Books" button with each book. When the button is clicked, that book is saved into MyBooks. When the MyBooks is clicked, the books in the MyBooks list are displayed. When the button "Remove" with each book on the My Books page is clicked, that book is removed from MyBooks. There is a “Remove All” button on MyBooks pages and when clicked, all the books in MyBooks will be removed.  There is a "Back" button on each page which takes the user to previous page. The MyBooks list is stored using localStorage, hence the MyBooks data is not lost when the page is refreshed. 
 
-1.	This is the Homepage.
+## Screenshots:
+
+### 1.	This is the Homepage.
+
+ ![image](https://user-images.githubusercontent.com/87970240/222988526-e4dfb860-5235-4d33-b796-e9b74deca79b.png)
+
+
+
+### 2.	This is the page when the searched item is fetched. The User can open each book for more details or add the books to the MyBooks.
+
+![image](https://user-images.githubusercontent.com/87970240/222988559-31a876fc-4280-436c-9aa1-2c98a8def44c.png)
+
+
+
+### 3.	This is the book details page which gives the users details on each book. There is a goback button to go back to the previous page.
+
+![image](https://user-images.githubusercontent.com/87970240/222988578-6ea30668-f38b-4865-9f0b-b2ec2af26bdc.png)
+
+
+### 4.	When the user clicks the “Add to MyBooks”, the book is added to the MyBooks.
+
+![image](https://user-images.githubusercontent.com/87970240/222988596-6d666660-8a5d-47a2-9e34-930e58ce1b07.png)
+
+
+### 5.	The user can go to My Books tab on navigation bar and a page with all the books added to My Books is displayed. There is a Remove button with each book when clicked removes the book and Remove All button removes all the books in My Books.
+
+![image](https://user-images.githubusercontent.com/87970240/222988613-2bd6d4ec-d00e-40db-a40e-c283aa6562c1.png)
+
  
-
-
-2.	This is the page when the searched item is fetched. The User can open each book for more details or add the books to the MyBooks.
-
+### 6.	There is a tab in Navigation bar for which each category of books and clicking on that leads the user to the page that gives the books under each category.
  
-
-
-3.	This is the book details page which gives the users details on each book. There is a goback button to go back to the previous page.
-
- 
-
-
-4.	When the user clicks the “Add to MyBooks”, the book is added to the MyBooks.
- 
-
-5.	The user can go to My Books tab on navigation bar and a page with all the books added to My Books is displayed. There is a Remove button with each book when clicked removes the book and Remove All button removes all the books in My Books.
-
- 
-6.	There is a tab in Navigation bar for which each category of books and clicking on that leads the user to the page that gives the books under each category.
- 
+ ![image](https://user-images.githubusercontent.com/87970240/222988623-82e871f2-9b1d-4dd8-b566-6385c9584bab.png)
 
 
 
-
-
-Technologies Used:
+## Technologies Used:
 
 React, JSX, CSS, Google API
 
-Setup/Installation:
+## Setup/Installation:
 
 1. Open Gitbash where the project folder needs to be created.
 2. Run  
@@ -63,12 +68,12 @@ https://github.com/lakshmigrao/BookStoreReactProject.git
 8. Visual Studio Code will be opened. Type npm start on the terminal bash      and the web browser opens on http://localhost:3000
 
 
-Approach:
+## Approach:
 
 Bookstore Project lets the user to search for a book by word/words related to the book in the search box. The search word/s is/are wrapped in the URL to fetch data from the Google Books API. Once the data is received, the structure of data object is studied and what details to be displayed on the browser is decided. All the books in the data are displayed on the browser. The user can click on any book to get more details.  A book element in the data object does not have a unique value, so a combination of title and isbn of book is used to decide the path. When a book is clicked, a new page named bookDetails page opens with path using title and isbn. Using React’s useParams (), the title and isbn is retrieved in BookDetails page using which all the details about the book is displayed. There is a goback button on the bookDetails page that takes user to the previous page. The user can add as many books as possible to MyBooks from the Homepage. MyBooks data is stored in localStorage and is not lost when the browser is refreshed. The user can delete a book or all books from MyBooks. Different tabs in the navigation bar takes the user to different pages which displays different categories of books.
 
 
-Status:
+## Status:
 
 The Bookapp project is completed.
 
