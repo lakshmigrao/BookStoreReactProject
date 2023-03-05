@@ -21,6 +21,7 @@ function Form({books,setBooks,myBooks,setMyBooks}){
           let response = await fetch(url); // returns a Promise
           let data = await response.json();
           setBooks(data);
+          console.log(data)
         } catch (error) {
           console.log("something went wrong");
         }
@@ -45,6 +46,7 @@ function Form({books,setBooks,myBooks,setMyBooks}){
       }else {
         return(
             <div>
+              
                 <form onSubmit={handleSubmit}>
                     <h1 className="search">Search for a book</h1>
                     <input value={input} onChange={handleChange} placeholder="Search for books, authors, publishers" style={{width :"250px"}}/>

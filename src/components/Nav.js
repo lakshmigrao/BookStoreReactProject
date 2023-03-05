@@ -42,13 +42,13 @@ function Nav(props){
             </Link>
             
       </div>
-      <marquee style={{ color : "black"}} id="scroll" scrolldelay="60" >
+     <marquee style={{ color : "black"}} id="scroll" scrolldelay="60" > 
         <h2>{ReadingQuotes}</h2> 
         </marquee>
         <div className="header">
-            <img className="imageHeader"src={require("../img/stackofbooks1.jpg")} alt="stack of books" style={{width:"633px"}}/>
+             {/*<img className="imageHeader"src={require("../img/stackofbooks1.jpg")} alt="stack of books" style={{width:"633px"}}/>
             <img className="imageHeader"src={require("../img/stackofbooks1.jpg")} alt="stack of books" style={{width:"634px"}}/>
-            <img className="imageHeader"src={require("../img/stackofbooks1.jpg")} alt="stack of books" style={{width:"633px"}}/>
+            <img className="imageHeader"src={require("../img/stackofbooks1.jpg")} alt="stack of books" style={{width:"633px"}}/> */}
             
         </div>
       {/* <SimpleImageSlider

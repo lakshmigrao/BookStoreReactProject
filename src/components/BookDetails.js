@@ -9,6 +9,7 @@ function BookDetails({myBooks,setMyBooks}){
     
     let [bookDetails, setBookDetails] = useState()
     const yourAPIKey = process.env.REACT_APP_KEY;
+    // let url = `https://www.googleapis.com/books/v1/volumes?q=9781501133336&maxResults=30&key=${yourAPIKey}`;
     let url = `https://www.googleapis.com/books/v1/volumes?q="${title}"+"${isbn}"&maxResults=30&key=${yourAPIKey}`;//+inauthor:keyes
     
     const getBookDetails = async() => { //async function getCoin() {}, function hoisting
@@ -16,6 +17,7 @@ function BookDetails({myBooks,setMyBooks}){
             const response = await fetch(url)
             const data = await response.json()
             setBookDetails(data)
+            console.log(data)
          
         
         }catch(error){
@@ -29,7 +31,7 @@ function BookDetails({myBooks,setMyBooks}){
     
 
     function goBack(){
-        navigate('/')//-1 to go back to previous page
+        navigate(-1)//-1 to go back to previous page
     }
     const loaded = () => {
         let item;
@@ -38,8 +40,10 @@ function BookDetails({myBooks,setMyBooks}){
             console.log("bookDetails.items")
             console.log(bookDetails.items)
             console.log(isbn)
-            for(let i=0;i<bookDetails.items.length;i++){
-                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')){
+            for(let i=0;i<bookDetails.items.length;i++){                                           
+                if(isbn===bookDetails.items[i].volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g, '')
+                || title===bookDetails.items[i].volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g, '')
+                ){
                     index=i;
                     break;
                 }
@@ -52,7 +56,7 @@ function BookDetails({myBooks,setMyBooks}){
         if(item!==undefined){
         return (
             <div className="container">
-                <div className="containerleft">
+                    {item.volumeInfo.imageLinks!==undefined?<img className="bookDetailsImg" src={item.volumeInfo.imageLinks.thumbnail} />:null}
                     {item.volumeInfo!==undefined?<h3>Title : {item.volumeInfo.title}</h3>:null}
                     {item.volumeInfo.subtitle!==undefined?<h4>{item.volumeInfo.subtitle}</h4>:null}
                     {item.volumeInfo.authors!==undefined?<h3>Author(s) : {item.volumeInfo.authors.join(', ')}</h3>:null}
@@ -62,14 +66,16 @@ function BookDetails({myBooks,setMyBooks}){
                     {item.volumeInfo.language!==undefined?<p>Language : {item.volumeInfo.language}</p>:null}
                     {item.volumeInfo.categories!==undefined?<p>Categories : {item.volumeInfo.categories.join(', ')} </p>:null}
                     {item.volumeInfo.publisher!==undefined?<p>Publisher : {item.volumeInfo.publisher}</p>:null}
-                </div>
-                <div className="containerright">
-                    {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail} />:null}
+                    
                     <button onClick={goBack}>Back</button>
                     
-                </div>
             </div>
         )}
+        }else{
+            return(<>
+                <h1>The Book details not found in database.</h1>
+                <button onClick={goBack}>Back</button>
+            </>) 
         }
         
     }
@@ -77,7 +83,7 @@ function BookDetails({myBooks,setMyBooks}){
 
     const loading = () => {
         return(
-            <div>Book Details Page Loading...</div>
+            <h1>Book Details Page Loading...</h1>
         )
     }
    

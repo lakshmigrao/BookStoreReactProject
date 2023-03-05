@@ -54,33 +54,40 @@ function HistoryPoliticsBooks({myBooks,setMyBooks}){
       
       const loaded = () => {
         const books =booksByHistoryPolitics;
-        return(<div className="App">
+        return (<div className="App">
+          <h1 className="leftTab">History&Politics</h1>
+      {books.items.map((item, index) => {
 
-            {books.items.map(( item,index) =>{
-                
-              let temptitle, temppublisher, tempIdentifier;
-              if(item.volumeInfo.title){temptitle = item.volumeInfo.title.replace(/[?:'@#$%^&*/]/g,'')}
-              if(item.volumeInfo.industryIdentifiers!==undefined){tempIdentifier = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')}
-              console.log(temptitle)
-                return(
-                  <div key={index} className="bookSingle">
-                    {item.volumeInfo.industryIdentifiers!==undefined?
-                    <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
-                      {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
-                    <h5>Title : {item.volumeInfo.title} </h5>
-                    </Link>:null}
-                    {item.volumeInfo.authors!==undefined?<h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5>:null}
-                    <button onClick={()=>addToMyBooks(item)}>Add to My Books</button>
-                  </div>
-                
-                )
-            }
-          )
+        let temptitle, tempIdentifier;
+        if (item.volumeInfo.title) { temptitle = item.volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g, '') }
+        if (item.volumeInfo.industryIdentifiers !== undefined) { 
+          tempIdentifier = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g, '') 
+        console.log(temptitle)
+        return (
+          <div key={index} className="bookSingle">
+            {item.volumeInfo.industryIdentifiers !== undefined ?
+            <>
+            <button onClick={() => { addToMyBooks(item) }}>Add to My Books</button>
+              <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
+                {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
+                <h5 className="bookTitle">{item.volumeInfo.title} </h5>
+              </Link> 
+              </>: null}
+              
+            {/* {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null} */}
+            
+          </div>
+
+        )}else{
+          return null
+        }
+      }
+      )
       }</div>)
       }
           const loading = () => {
             return(
-                <h1>Book Details Page Loading...</h1>
+                <h1>History&Politics Page Loading...</h1>
             )
         }
           return booksByHistoryPolitics?loaded():loading()

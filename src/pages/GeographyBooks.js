@@ -10,7 +10,7 @@ function GeographyBooks({myBooks,setMyBooks}){
     async function getBooksbyGeography() {
     
         const yourAPIKey = process.env.REACT_APP_KEY;//"AIzaSyBvJwQ-tZE4rgWnjZ9kYgnDo0ilUqz03Mc"//
-        let url = `https://www.googleapis.com/books/v1/volumes?q=geography+countries+continents+maps+oceans+mountains+volcano&maxResults=30&key=${yourAPIKey}`
+        let url = `https://www.googleapis.com/books/v1/volumes?q=geography+countries+continents+maps+oceans+mountains+volcano+earthquake&maxResults=30&key=${yourAPIKey}`
        
         
         try {
@@ -53,33 +53,40 @@ function GeographyBooks({myBooks,setMyBooks}){
       
       const loaded = () => {
         const books =booksByGeography;
-        return(<div className="App">
+        return (<div className="App">
+            <h1 className="leftTab">Geography</h1>
+      {books.items.map((item, index) => {
 
-            {books.items.map(( item,index) =>{
-                
-              let temptitle, temppublisher, tempIdentifier;
-              if(item.volumeInfo.title){temptitle = item.volumeInfo.title.replace(/[?:'@#$%^&*/]/g,'')}
-              if(item.volumeInfo.industryIdentifiers!==undefined){tempIdentifier = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:'@#$%^&*/]/g,'')}
-              console.log(temptitle)
-                return(
-                  <div key={index} className="bookSingle">
-                    {item.volumeInfo.industryIdentifiers!==undefined?
-                    <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
-                      {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
-                    <h5>Title : {item.volumeInfo.title} </h5>
-                    </Link>:null}
-                    {item.volumeInfo.authors!==undefined?<h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5>:null}
-                    <button onClick={()=>addToMyBooks(item)}>Add to My Books</button>
-                  </div>
-                
-                )
-            }
-          )
+        let temptitle, tempIdentifier;
+        if (item.volumeInfo.title) { temptitle = item.volumeInfo.title.replace(/[?:,.`~<>@#$%^&*/]/g, '') }
+        if (item.volumeInfo.industryIdentifiers !== undefined) { 
+          tempIdentifier = item.volumeInfo.industryIdentifiers[0].identifier.replace(/[?:,.`~<>@#$%^&*/]/g, '') 
+        console.log(temptitle)
+        return (
+          <div key={index} className="bookSingle">
+            {item.volumeInfo.industryIdentifiers !== undefined ?
+            <>
+            <button onClick={() => { addToMyBooks(item) }}>Add to My Books</button>
+              <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
+                {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
+                <h5 className="bookTitle">{item.volumeInfo.title} </h5>
+              </Link> 
+              </>: null}
+              
+            {/* {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null} */}
+            
+          </div>
+
+        )}else{
+          return null
+        }
+      }
+      )
       }</div>)
       }
           const loading = () => {
             return(
-                <h1>Book Details Page Loading...</h1>
+                <h1>Geography Books Page Loading...</h1>
             )
         }
           return booksByGeography?loaded():loading()
