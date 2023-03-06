@@ -64,17 +64,11 @@ function NonFictionBooks({ myBooks, setMyBooks }) {
           console.log(temptitle)
           return (
             <div key={index} className="bookSingle">
-              {item.volumeInfo.industryIdentifiers !== undefined ?
-                <>
-                  <button onClick={() => { addToMyBooks(item) }}>Add to My Books</button>
-                  <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
-                    {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
-                    <h5 className="bookTitle">{item.volumeInfo.title} </h5>
-                  </Link>
-                </> : null}
-
-              {/* {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null} */}
-
+              <button onClick={() => { addToMyBooks(item) }}>Add to My Books</button>
+              <Link to={`/bookdetails/${temptitle}/${tempIdentifier}`}>
+                {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
+                <h5 className="bookTitle">{item.volumeInfo.title} </h5>
+              </Link>
             </div>
 
           )

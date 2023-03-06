@@ -46,7 +46,6 @@ function MyBooks({ myBooks, setMyBooks }) {
                                 {item.volumeInfo.imageLinks !== undefined ? <img className="bookImage" src={item.volumeInfo.imageLinks.thumbnail} /> : null}
                                 <h5 className="bookTitle">{item.volumeInfo.title} </h5>
                             </Link>
-                            {/* {item.volumeInfo.authors !== undefined ? <h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5> : null} */}
                         </div>
                     )
                 } else {
@@ -55,26 +54,6 @@ function MyBooks({ myBooks, setMyBooks }) {
             }
             )
             }</div></>)
-
-        // return( 
-        //     <div className="App">
-        //     {myBooks.map((item,index) => {
-        //     return(                
-        //         <div key={index} className="bookSingle">
-        //             {item.volumeInfo!==undefined?
-        //             <>
-        //             <button onClick={()=>removeFromMyBooks(index)}> Remove </button>
-        //             {item.volumeInfo.imageLinks!==undefined?<img src={item.volumeInfo.imageLinks.thumbnail}/>:null}
-        //             {item.volumeInfo.title!==undefined?<h5>Title : {item.volumeInfo.title} </h5>:null}
-        //             {item.volumeInfo.authors!==undefined?<h5>Author(s) : {item.volumeInfo.authors.join(', ')}</h5>:null}
-        //             </>
-        //             :null}
-        //        </div>
-
-        //     )
-        // }) 
-        // }
-        // </div>)
     }
     else {
         return (
