@@ -47,6 +47,9 @@ function BookDisplay({ books, myBooks, setMyBooks }) {
     )
 
 
+  }else{
+return <h1>No results found.</h1>
+
   }
 }
 
